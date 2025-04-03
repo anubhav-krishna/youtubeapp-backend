@@ -8,12 +8,9 @@
 //   }
 // }
 
-const asynchandler =(fn) => async (req, res, next) => {
-    Promise.resolve(fn(req, res, next)).
-    catch((err)=>(next(err)));
-}
-
-export default asynchandler;
+export const asynchandler = (fn) => (req, res, next) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+};
 
 
 
