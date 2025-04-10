@@ -63,15 +63,15 @@ userSchema.methods.generateAccessToken = function () {
         fullname: this.fullname,
     },
     process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: process.env.ACCESS_TOKEN_EXPIRY
+        expiresIn: ACCESS_TOKEN_EXPIRY || "1d"
     })
 };
-userSchema.methods.generateAccessToken = function () {
+userSchema.methods.generateRefreshToken = function () {
     return jwt.sign({
         _id: this._id,
     },
     process.env.REFRESH_TOKEN_SECRET, {
-        expiresIn: process.env.REFRESH_TOKEN_EXPIRY
+        expiresIn: process.env.REFRESH_TOKEN_EXPIRY || "30d"
     })
 };
 
